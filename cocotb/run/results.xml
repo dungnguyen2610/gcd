@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1692689069" />
+    <testcase name="simple_test" classname="test_gcd" file="/home/dylan/Documents/project/cocotb/tests/sequence/test_gcd.py" lineno="16" time="0.004054546356201172" sim_time_ns="165.001" ratio_time="40695.30485146419">
+      <failure message="Test failed with RANDOM_SEED=1692689069" />
+    </testcase>
+  </testsuite>
+</testsuites>
