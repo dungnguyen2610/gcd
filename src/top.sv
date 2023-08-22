@@ -6,32 +6,14 @@ module top(
   output logic [3:0] result_val_o
 );
 
-  logic [3:0] a_tmp, b_tmp, result_val, data_a, data_b;
+  logic [3:0] a_data_mas_to_sla, b_data_mas_to_sla, result_val;
   logic req, busy, valid;
-
-  FIFO value_a (
-    .clk_i  (clk_i),
-    .rst_ni (rst_ni),
-    .wr_en  (1'b1),
-    .rd_en  (1'b1),
-    .data_i (a_i),
-    .data_o (data_a)
-  );
-
-  FIFO value_b (
-    .clk_i  (clk_i),
-    .rst_ni (rst_ni),
-    .wr_en  (1'b1),
-    .rd_en  (1'b1),
-    .data_i (b_i),
-    .data_o (data_b)
-  );
 
   slave slv(
     .clk_i          (clk_i),
     .rst_ni         (rst_ni),
-    .op_a_i         (a_tmp),
-    .op_b_i         (b_tmp),
+    .op_a_i         (a_data_mas_to_sla),
+    .op_b_i         (b_data_mas_to_sla),
     .req_i          (req),
     .busy_o         (busy),
     .valid_o        (valid),
@@ -39,14 +21,14 @@ module top(
   );
 
   master mter(
-    .op_a_i         (data_a),
-    .op_b_i         (data_b),
+    .op_a_i         (a_i),
+    .op_b_i         (b_i),
     .busy_i         (busy),
     .valid_i        (valid),
     .result_val_i   (result_val),
     .result_val_o   (result_val_o),
-    .a_o            (a_tmp),
-    .b_o            (b_tmp),
+    .a_o            (a_data_mas_to_sla),
+    .b_o            (b_data_mas_to_sla),
     .clk_i          (clk_i),
     .req_o          (req)
   );

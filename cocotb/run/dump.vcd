@@ -1,5 +1,5 @@
 $date
-	Tue Aug 22 14:24:30 2023
+	Tue Aug 22 22:06:21 2023
 $end
 $version
 	Icarus Verilog
@@ -16,11 +16,9 @@ $var wire 1 % valid $end
 $var wire 4 & result_val_o [3:0] $end
 $var wire 4 ' result_val [3:0] $end
 $var wire 1 ( req $end
-$var wire 4 ) data_b [3:0] $end
-$var wire 4 * data_a [3:0] $end
-$var wire 1 + busy $end
-$var wire 4 , b_tmp [3:0] $end
-$var wire 4 - a_tmp [3:0] $end
+$var wire 1 ) busy $end
+$var wire 4 * b_data_mas_to_sla [3:0] $end
+$var wire 4 + a_data_mas_to_sla [3:0] $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
@@ -28,11 +26,9 @@ $dumpall
 $end
 #0
 $dumpvars
-bx -
-bx ,
-x+
-bx *
-bx )
+bx00 +
+b0x0x *
+x)
 x(
 bx '
 bx &
@@ -43,110 +39,82 @@ b101 "
 b1100 !
 $end
 #5000
+b101 *
+b1100 +
 b0 &
-0+
+0)
 0%
-b0 ,
-b0 -
-b0 )
-b0 *
 0$
+1(
 1#
 #6000
 1$
 #10000
 0#
 #15000
-0(
-b0 '
+b0 *
+b0 +
+1)
+b1100 '
 1#
 #20000
 0#
 #25000
-b101 ,
-b1100 -
-b101 )
-b1100 *
+b111 '
 1#
 #30000
 0#
 #35000
-1(
-b1100 '
+b10 '
 1#
 #40000
 0#
 #45000
-b0 ,
-b0 -
-1+
+b101 '
 1#
 #50000
 0#
 #55000
-b111 '
+b11 '
 1#
 #60000
 0#
 #65000
-b10 '
+b1 '
 1#
 #70000
 0#
 #75000
-b101 '
+b10 '
 1#
 #80000
 0#
 #85000
-b11 '
+b1 '
 1#
 #90000
 0#
 #95000
-b1 '
+b0 '
 1#
 #100000
 0#
 #105000
-b10 '
+b1 '
 1#
 #110000
 0#
 #115000
-b1 '
+b1 &
+1%
 1#
 #120000
 0#
 #125000
-b0 '
-1#
-#130000
-0#
-#135000
-b1 '
-1#
-#140000
-0#
-#145000
-b1 &
-1%
-1#
-#150000
-0#
-#155000
-b101 ,
-b1100 -
+b101 *
+b1100 +
 b0 &
-0+
+0)
 0%
 1#
-#160000
-0#
-#165000
-b0 ,
-b0 -
-1+
-b1100 '
-1#
-#165001
+#125002

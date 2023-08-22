@@ -26,12 +26,18 @@ async def simple_test(dut):
     dut.rst_ni.value = 0
     await Timer(1, units = "ns")
     dut.rst_ni.value = 1
-    for i in range (100):
+    for i in range (20):
         await RisingEdge(dut.clk_i)
         if (dut.valid.value == 1):
             break
-    await RisingEdge(dut.clk_i)
     assert dut.result_val_o.value == gcd_model(A,B), "fail"
+
+@cocotb.test()
+async def random_test(dut):
+    clock = Clock(dut.clk_i, 10, units="ns")
+    cocotb.start_soon(clock.start(start_high=False))
+
+
 
 
 def test_runner():
