@@ -13,7 +13,7 @@ module ifc_gcd (
   output logic        y_rdy
 );
 logic [3:0] a,b,result;
-logic a_full, b_full, busy, valid;
+logic a_full, b_full, busy, valid, y_empty;
 
 FIFO1 data_a (
   .clk_i    (clk_i),
@@ -43,7 +43,7 @@ gcd GCD (
   .busy_o       (busy),
   .valid_o      (valid),
   .result_val_o (result)
-)
+);
 
 FIFO2 data_y (
   .clk_i    (clk_i),
@@ -58,5 +58,10 @@ FIFO2 data_y (
 assign a_rdy = (!a_full);
 assign b_rdy = (!b_full);
 assign y_rdy = (!y_empty);
+
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1, ifc_gcd);
+  end
 
 endmodule

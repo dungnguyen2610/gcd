@@ -8,7 +8,8 @@ PWD = $(shell pwd)
 export PYTHONPATH := $(PWD)/../env:$(PYTHONPATH)
 export PYTHONPATH := $(PWD)/../tests/sequence:$(PYTHONPATH)
 
-VERILOG_SOURCES += $(shell pwd)/../../src/top.sv
+VERILOG_SOURCES += $(shell pwd)/../../src/gcd.sv
+VERILOG_SOURCES += $(shell pwd)/../../src/ifc_gcd.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/master.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/gcdControl.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/gcdDatapath.sv
@@ -16,9 +17,10 @@ VERILOG_SOURCES += $(shell pwd)/../../src/slave.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/dff.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/mux21.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/mux41.sv
-VERILOG_SOURCES += $(shell pwd)/../../src/FIFO.sv
+VERILOG_SOURCES += $(shell pwd)/../../src/FIFO1.sv
+VERILOG_SOURCES += $(shell pwd)/../../src/FIFO2.sv
 
 MODULE = test_gcd
-TOPLEVEL = top
+TOPLEVEL = ifc_gcd
 
 include $(shell cocotb-config --makefiles)/Makefile.sim

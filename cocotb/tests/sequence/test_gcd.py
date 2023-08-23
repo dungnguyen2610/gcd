@@ -19,18 +19,32 @@ async def simple_test(dut):
     cocotb.start_soon(clock.start(start_high=False))
     A = 12
     B = 5
-    dut.a_i.value = A
-    dut.b_i.value = B
+    dut.a_data.value = A
+    dut.b_data.value = B
 
     await RisingEdge(dut.clk_i)
     dut.rst_ni.value = 0
     await Timer(1, units = "ns")
     dut.rst_ni.value = 1
+    await RisingEdge(dut.clk_i)
+
+    if (dut.b_rdy.value == 1):
+        dut.b_en.value = 1
+    else: dut.b_en.value = 0
+
+    if (dut.a_rdy == 1):
+        dut.a_en.value = 1
+    else: dut.a_en.value = 0
+
     for i in range (20):
         await RisingEdge(dut.clk_i)
-        if (dut.valid.value == 1):
+        if (dut.y_rdy.value == 1):
+            dut.y_en.value = 1
+            await RisingEdge(dut.clk_i)
             break
-    assert dut.result_val_o.value == gcd_model(A,B), "fail"
+        else: dut.y_en.value = 0
+    await RisingEdge(dut.clk_i)
+    assert dut.y_data.value == gcd_model(A,B), "fail"
 
 @cocotb.test()
 async def random_test(dut):
@@ -51,7 +65,7 @@ def test_runner():
     verilog_sources = []
 
     if hdl_toplevel_lang == "verilog":
-        verilog_sources += [proj_path / "src" / "top.sv"]
+        verilog_sources += [proj_path / "src" / "ifc_gcd.sv"]
 
     # equivalent to setting the PYTHONPATH environment variable
     sys.path.append(str(proj_path / "cocotb" / "tests" /"sequence"))
@@ -62,7 +76,7 @@ def test_runner():
         hdl_toplevel="top",
         always=True,
     )
-    runner.test(hdl_toplevel="top", test_module="test_gcd")
+    runner.test(hdl_toplevel="ifc_gcd", test_module="test_gcd")
 
 
 if __name__ == "__main__":

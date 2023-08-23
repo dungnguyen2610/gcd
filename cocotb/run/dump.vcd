@@ -1,5 +1,5 @@
 $date
-	Tue Aug 22 22:06:21 2023
+	Wed Aug 23 19:55:06 2023
 $end
 $version
 	Icarus Verilog
@@ -7,18 +7,26 @@ $end
 $timescale
 	1ps
 $end
-$scope module top $end
-$var wire 4 ! a_i [3:0] $end
-$var wire 4 " b_i [3:0] $end
-$var wire 1 # clk_i $end
-$var wire 1 $ rst_ni $end
-$var wire 1 % valid $end
-$var wire 4 & result_val_o [3:0] $end
-$var wire 4 ' result_val [3:0] $end
-$var wire 1 ( req $end
-$var wire 1 ) busy $end
-$var wire 4 * b_data_mas_to_sla [3:0] $end
-$var wire 4 + a_data_mas_to_sla [3:0] $end
+$scope module ifc_gcd $end
+$var wire 4 ! a_data [3:0] $end
+$var wire 1 " a_en $end
+$var wire 4 # b_data [3:0] $end
+$var wire 1 $ b_en $end
+$var wire 1 % clk_i $end
+$var wire 1 & rst_ni $end
+$var wire 1 ' y_en $end
+$var wire 1 ( y_rdy $end
+$var wire 1 ) y_empty $end
+$var wire 4 * y_data [3:0] $end
+$var wire 1 + valid $end
+$var wire 4 , result [3:0] $end
+$var wire 1 - busy $end
+$var wire 1 . b_rdy $end
+$var wire 1 / b_full $end
+$var wire 4 0 b [3:0] $end
+$var wire 1 1 a_rdy $end
+$var wire 1 2 a_full $end
+$var wire 4 3 a [3:0] $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
@@ -26,95 +34,147 @@ $dumpall
 $end
 #0
 $dumpvars
-bx00 +
-b0x0x *
+bx 3
+x2
+x1
+bx 0
+x/
+x.
+x-
+bx ,
+x+
+bx *
 x)
 x(
-bx '
-bx &
-x%
+z'
+z&
+0%
 z$
-0#
-b101 "
+b101 #
+z"
 b1100 !
 $end
 #5000
-b101 *
-b1100 +
-b0 &
-0)
-0%
-0$
-1(
-1#
-#6000
-1$
-#10000
-0#
-#15000
+b0 ,
+1.
+0/
+11
+02
+0-
+0+
 b0 *
-b0 +
+0(
 1)
-b1100 '
-1#
-#20000
-0#
-#25000
-b111 '
-1#
-#30000
-0#
-#35000
-b10 '
-1#
-#40000
-0#
-#45000
-b101 '
-1#
-#50000
-0#
-#55000
-b11 '
-1#
-#60000
-0#
-#65000
-b1 '
-1#
-#70000
-0#
-#75000
-b10 '
-1#
-#80000
-0#
-#85000
-b1 '
-1#
-#90000
-0#
-#95000
-b0 '
-1#
-#100000
-0#
-#105000
-b1 '
-1#
-#110000
-0#
-#115000
-b1 &
+b0 0
+b0 3
+0&
 1%
-1#
-#120000
-0#
-#125000
-b101 *
-b1100 +
-b0 &
-0)
+#6000
+1&
+#10000
 0%
-1#
-#125002
+#15000
+1"
+1$
+1%
+#20000
+0%
+#25000
+0'
+1%
+#30000
+0%
+#35000
+b1100 3
+b101 0
+1%
+#40000
+0%
+#45000
+1%
+#50000
+0%
+#55000
+1-
+1%
+#60000
+0%
+#65000
+1%
+#70000
+0%
+#75000
+1%
+#80000
+0%
+#85000
+1%
+#90000
+0%
+#95000
+1%
+#100000
+0%
+#105000
+1%
+#110000
+0%
+#115000
+1%
+#120000
+0%
+#125000
+0.
+1/
+01
+12
+1%
+#130000
+0%
+#135000
+1%
+#140000
+0%
+#145000
+1%
+#150000
+0%
+#155000
+b1 ,
+1+
+1%
+#160000
+0%
+#165000
+b0 ,
+0-
+0+
+1(
+0)
+1%
+#170000
+0%
+#175000
+1'
+1-
+11
+02
+1.
+0/
+1%
+#180000
+0%
+#185000
+0.
+1/
+01
+12
+0(
+1)
+b1 *
+1%
+#190000
+0%
+#195000
+1%
+#195002

@@ -37,8 +37,4 @@ module gcd(
 
   assign busy_o = busy;
   assign valid_o = valid;
-  initial begin
-    $dumpfile("dump.vcd");
-    $dumpvars(1, top);
-  end
 endmodule
