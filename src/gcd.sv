@@ -1,8 +1,10 @@
-module top(
+module gcd(
   input  logic       clk_i,
   input  logic       rst_ni,
   input  logic [3:0] a_i,
   input  logic [3:0] b_i,
+  output logic       busy_o,
+  output logic       valid_o,
   output logic [3:0] result_val_o
 );
 
@@ -32,6 +34,9 @@ module top(
     .clk_i          (clk_i),
     .req_o          (req)
   );
+
+  assign busy_o = busy;
+  assign valid_o = valid;
   initial begin
     $dumpfile("dump.vcd");
     $dumpvars(1, top);
