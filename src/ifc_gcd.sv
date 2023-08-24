@@ -13,25 +13,25 @@ module ifc_gcd (
   output logic        y_rdy
 );
 logic [3:0] a,b,result;
-logic a_full, b_full, busy, valid, y_empty;
+logic a_empty, b_empty, busy, valid, y_empty;
 
-FIFO1 data_a (
+FIFO2 data_a (
   .clk_i    (clk_i),
   .rst_ni   (rst_ni),
   .wr_en    (a_en),
   .rd_en    (!busy),
   .data_i   (a_data),
-  .full_o   (a_full),
+  .empty_o  (a_empty),
   .data_o   (a)
 );
 
-FIFO1 data_b (
+FIFO2 data_b (
   .clk_i    (clk_i),
   .rst_ni   (rst_ni),
   .wr_en    (b_en),
   .rd_en    (!busy),
   .data_i   (b_data),
-  .full_o   (b_full),
+  .empty_o  (b_empty),
   .data_o   (b)
 );
 
@@ -55,8 +55,8 @@ FIFO2 data_y (
   .data_o   (y_data)
 );
 
-assign a_rdy = (!a_full);
-assign b_rdy = (!b_full);
+assign a_rdy = a_empty;
+assign b_rdy = b_empty;
 assign y_rdy = (!y_empty);
 
   initial begin

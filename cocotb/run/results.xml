@@ -1,7 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1692795306" />
-    <testcase name="simple_test" classname="test_gcd" file="/home/dylan/Documents/project/cocotb/tests/sequence/test_gcd.py" lineno="16" time="0.008281707763671875" sim_time_ns="195.001" ratio_time="23545.98901151543" />
-    <testcase name="random_test" classname="test_gcd" file="/home/dylan/Documents/project/cocotb/tests/sequence/test_gcd.py" lineno="49" time="0.00019860267639160156" sim_time_ns="0.0010000000000047748" ratio_time="5.035178871572661" />
+    <property name="random_seed" value="1692886289" />
+    <testcase name="random_test" classname="test_gcd" file="/home/dylan/Documents/project/cocotb/tests/sequence/test_gcd.py" lineno="20" time="0.002572298049926758" sim_time_ns="15.001" ratio_time="5831.750329409583" />
   </testsuite>
 </testsuites>

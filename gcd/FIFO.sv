@@ -41,3 +41,39 @@ module FIFO
   assign full  = ((w_ptr == 3'd7) & (r_ptr == 3'd0));
   assign empty = (w_ptr == r_ptr);
 endmodule
+
+@cocotb.test()
+async def simple_test(dut):
+    clock = Clock(dut.clk_i, 10, units="ns")
+    cocotb.start_soon(clock.start(start_high=False))
+    A = 12
+    B = 5
+    dut.a_data.value = A
+    dut.b_data.value = B
+
+    await RisingEdge(dut.clk_i)
+    dut.rst_ni.value = 0
+    await Timer(1, units = "ns")
+    dut.rst_ni.value = 1
+    await RisingEdge(dut.clk_i)
+
+    if (dut.b_rdy.value == 1):
+        dut.b_en.value = 1
+    else: dut.b_en.value = 0
+
+    if (dut.a_rdy == 1):
+        dut.a_en.value = 1
+    else: dut.a_en.value = 0
+
+    for i in range (20):
+        if (dut.y_rdy.value == 1):
+            dut.y_en.value = 1
+            await RisingEdge(dut.clk_i)
+            break
+        else:
+            dut.y_en.value = 0
+            await RisingEdge(dut.clk_i)
+    await RisingEdge(dut.clk_i)
+    assert dut.y_data.value == gcd_model(A,B), "fail"
+
+

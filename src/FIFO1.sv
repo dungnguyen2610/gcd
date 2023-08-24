@@ -33,6 +33,6 @@ module FIFO1
       end
     end
   end
-  assign full_o  = ({~w_ptr[3], w_ptr[2:0]} == r_ptr);
+  assign full_o  = (!rst_ni ? 1 : ({~w_ptr[3], w_ptr[2:0]} == r_ptr));
   assign empty = (w_ptr == r_ptr);
 endmodule
