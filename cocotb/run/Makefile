@@ -8,7 +8,6 @@ PWD = $(shell pwd)
 export PYTHONPATH := $(PWD)/../env:$(PYTHONPATH)
 export PYTHONPATH := $(PWD)/../tests/sequence:$(PYTHONPATH)
 
-VERILOG_SOURCES += $(shell pwd)/../../src/gcd.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/ifc_gcd.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/master.sv
 VERILOG_SOURCES += $(shell pwd)/../../src/gcdControl.sv

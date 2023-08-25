@@ -1,5 +1,5 @@
 $date
-	Thu Aug 24 21:11:29 2023
+	Sat Aug 26 00:01:36 2023
 $end
 $version
 	Icarus Verilog
@@ -10,23 +10,21 @@ $end
 $scope module ifc_gcd $end
 $var wire 4 ! a_data [3:0] $end
 $var wire 1 " a_en $end
-$var wire 1 # a_rdy $end
-$var wire 4 $ b_data [3:0] $end
-$var wire 1 % b_en $end
-$var wire 1 & b_rdy $end
-$var wire 1 ' clk_i $end
-$var wire 1 ( rst_ni $end
-$var wire 1 ) y_en $end
-$var wire 1 * y_rdy $end
-$var wire 1 + y_empty $end
-$var wire 4 , y_data [3:0] $end
-$var wire 1 - valid $end
-$var wire 4 . result [3:0] $end
-$var wire 1 / busy $end
-$var wire 1 0 b_empty $end
-$var wire 4 1 b [3:0] $end
-$var wire 1 2 a_empty $end
-$var wire 4 3 a [3:0] $end
+$var wire 4 # b_data [3:0] $end
+$var wire 1 $ b_en $end
+$var wire 1 % clk_i $end
+$var wire 1 & rst_ni $end
+$var wire 1 ' y_en $end
+$var wire 1 ( y_rdy $end
+$var wire 4 ) y_data [3:0] $end
+$var wire 1 * valid $end
+$var wire 4 + result_val [3:0] $end
+$var wire 1 , req $end
+$var wire 1 - busy $end
+$var wire 1 . b_rdy $end
+$var wire 4 / b_data_mas_to_sla [3:0] $end
+$var wire 1 0 a_rdy $end
+$var wire 4 1 a_data_mas_to_sla [3:0] $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
@@ -34,47 +32,124 @@ $dumpall
 $end
 #0
 $dumpvars
-bx 3
-x2
 bx 1
 x0
-x/
-bx .
+bx /
+x.
 x-
-bx ,
-x+
+x,
+bx +
 x*
-z)
-z(
-0'
-x&
-z%
-bz $
-x#
+bx )
+x(
+z'
+1&
+0%
+z$
+bz #
 z"
 bz !
 $end
-#5000
-1(
-1'
-#6000
-b0 .
-0/
-0-
-b0 ,
-0*
-1+
-b0 1
-1&
+#1000
+b0 )
+1.
 10
-b0 3
-1#
-12
+0-
 0(
-#7000
-1(
+0*
+0&
+#2000
+1&
+#5000
+b11 !
+1"
+0,
+1%
 #10000
-0'
+0%
 #15000
+b111 #
+1$
+0"
+b11 1
+1%
+#20000
+0%
+#25000
+0$
+b11 +
+b111 /
+1%
+#30000
+0%
+#35000
+1,
+1%
+#40000
+0%
+#45000
+0.
+00
+1-
+b0 /
+b0 1
+1%
+#50000
+0%
+#55000
+b111 +
+1%
+#60000
+0%
+#65000
+b100 +
+1%
+#70000
+0%
+#75000
+b1 +
+1%
+#80000
+0%
+#85000
+b11 +
+1%
+#90000
+0%
+#95000
+b10 +
+1%
+#100000
+0%
+#105000
+b1 +
+1%
+#110000
+0%
+#115000
+b0 +
+1%
+#120000
+0%
+#125000
+b1 +
+1%
+#130000
+0%
+#135000
 1'
-#15001
+b1 )
+1(
+1*
+1%
+#140000
+0%
+#145000
+b0 )
+1.
+10
+0-
+0(
+0*
+1%
+#145001
