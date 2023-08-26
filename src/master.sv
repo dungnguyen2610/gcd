@@ -29,6 +29,7 @@ always_ff @(posedge clk_i) begin
       req_o <= 1'b1;
     else if (!busy_i)
       req_o <= 1'b0;
+    else req_o <= 0;
 end
 
 assign result_val_o = valid_i ? result_val_i : 0;

@@ -27,26 +27,22 @@ async def set_up (dut):
     dut.rst_ni.value = 1
     await clkedge
 
-def call_back(actual_value):
-    global expect_value
-    assert actual_value == expect_value, "fail"
 
 @cocotb.test()
 async def random_test(dut):
     clkedge  = RisingEdge(dut.clk_i)
-    global expect_value
     await set_up(dut)
-
-    a = random.randint(0,15)
-    b = random.randint(0,15)
     adrv = InputDriver(dut, "a", dut.clk_i)
     bdrv = InputDriver(dut, "b", dut.clk_i)
-    await adrv._driver_send(a)
-    await bdrv._driver_send(b)
+    output = OutputDriver(dut, "y", dut.clk_i)
 
-    expect_value = gcd_model(a,b)
-    outdata = OutputDriver(dut, "y", dut.clk_i, call_back)
-    await outdata._driver_send()
+    for i in range (3):
+        a = random.randint(0,15)
+        b = random.randint(0,15)
+        await adrv._driver_send(a)
+        await bdrv._driver_send(b)
+        await output._driver_send()
+        assert output.bus.data.value == gcd_model(a,b)
 
 
 class InputDriver(BusDriver):
@@ -68,17 +64,15 @@ class InputDriver(BusDriver):
 class OutputDriver(BusDriver):
     _signals = ["rdy", "en", "data"]
 
-    def __init__(self, dut, name, clk, dataout):
+    def __init__(self, dut, name, clk):
         BusDriver.__init__(self, dut, name, clk)
         self.clk = clk
-        self.dataout = dataout
-        #self.append(0)
 
     async def _driver_send(self, sync=True):
         if self.bus.rdy.value != 1:
             await RisingEdge(self.bus.rdy)
         self.bus.en.value = 1
-        self.dataout = self.bus.data.value
+        dataout = self.bus.data.value
         await RisingEdge(self.clk)
         self.bus.en.value = 0
 
